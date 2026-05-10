@@ -7,6 +7,7 @@
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
 <body>
+
 <model-viewer 
     id="ar-model"
     src="Untitled.glb"
@@ -18,42 +19,38 @@
     auto-rotate 
     style="width: 100%; height: 500px;">
     
-    <button slot="ar-button" id="ar-btn-text" style="background-color: white; border-radius: 4px; border: none; position: absolute; top: 16px; right: 16px; padding: 10px;">
-        Lihat dalam AR
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; top: 16px; right: 16px; padding: 10px; z-index: 100;">
+        <span id="teks-ar">Lihat dalam AR!!</span>
+    </button>
+</model-viewer>
 
 <div style="text-align: center; margin-top: 20px;">
-    <button onclick="pilihModel('Untitled.glb', 'Untitled.usdz')" 
-            style="padding: 10px; margin: 5px; cursor: pointer; border-radius: 8px; border: 1px solid #ccc;">
+    <button onclick="pilihModel('Untitled.glb', 'Untitled.usdz', 'Lihat Bunga nih!!')" 
+            style="padding: 10px; margin: 5px; cursor: pointer; border-radius: 8px;">
         🌻 Munculkan Bunga
     </button>
     
-    <button onclick="pilihModel('bangunan.glb', 'bangunan.usdz')" 
-            style="padding: 10px; margin: 5px; cursor: pointer; border-radius: 8px; border: 1px solid #ccc;">
+    <button onclick="pilihModel('bangunan.glb', 'bangunan.usdz', 'Lihat Gedungnya deh!')" 
+            style="padding: 10px; margin: 5px; cursor: pointer; border-radius: 8px;">
         🏠 Munculkan Bangunan
-        
     </button>
-
 </div>
-</button>
 
-</model-viewer>
 <script>
-    function pilihModel(glbFile, usdzFile, teksTombol) {
-        const modelViewer = document.querySelector('#ar-model');
-        const buttonText = document.querySelector('#ar-btn-text');
+    function pilihModel(glbFile, usdzFile, teksBaru) {
+        const mv = document.querySelector('#ar-model');
+        const txt = document.querySelector('#teks-ar');
 
-        // Proses mengganti file model
-        modelViewer.src = glbFile;
-        modelViewer.iosSrc = usdzFile;
+        // Ganti sumber file
+        mv.src = glbFile;
+        mv.iosSrc = usdzFile;
         
-        // Mengubah teks pada tombol AR agar sesuai dengan objek yang dipilih
-        buttonText.innerHTML = teksTombol;
+        // Ganti teks tombol AR secara otomatis
+        txt.textContent = teksBaru;
 
-        console.log("Model sekarang: " + glbFile);
+        console.log("Berhasil pindah ke: " + teksBaru);
     }
 </script>
-
-    
 
 </body>
 </html>
